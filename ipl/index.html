@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>IPL</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="controller.js"></script>
@@ -144,7 +144,9 @@ header ul li h4 {
     margin-bottom: 0;
     padding-bottom: 1em;
     position: relative;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
     white-space: nowrap;
 }
 
