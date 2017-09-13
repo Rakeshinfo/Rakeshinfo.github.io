@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<link rel="stylesheet" href="bt.css">
+<script src="ang.js"></script>
+<script src="jq.js"></script>
+<script src="jqui.js"></script>
+<script src="jdl.js"></script>
+<style>
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #127ABD;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 300;
+    color: #fff;
+    border-bottom: 1px solid cornflowerblue;
+}
+
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+#tList {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    max-width: 250px;
+}
+
+#tList>li {
+    list-style: none;
+    display: inline-block;
+    /*float: left;*/
+    margin: 10px;
+    vertical-align: top;
+    background-color: #f1f1f1;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+
+.addList span {
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+}
+
+.addList {
+    width: 250px;
+    display: inline-block;
+    background-color: #0D5584;
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.addTask .btn {
+    margin-right: 5px;
+}
+
+.addList input.active {
+    background-color: #fff;
+}
+
+.addList input {
+    display: inline-block;
+    width: 100%;
+    background-color: #0D5584;
+    border: none;
+}
+
+.addTask {
+    /*display: inline-block;*/
+    width: 100%;
+    padding-top: 5px;
+}
+
+.list>input:focus {
+    background-color: #fff;
+}
+
+.list>span:after {
+    background-color: #fff;
+    color: #333;
+    content: "Drag me";
+    position: absolute;
+    top: -10%;
+    right: -80%;
+    font-size: 12px;
+    white-space: nowrap;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 3px;
+    padding: 0 5px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+
+.list>span:hover:after {
+    opacity: 1;
+    visibility: visible;
+    top: -70%;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+
+.list>span {
+    width: 20px;
+    height: 34px;
+    display: inline-block;
+    float: left;
+    padding: 2px;
+    cursor: -webkit-grab;
+    position: relative;
+}
+
+.list>input {
+    background-color: #eee;
+    width: calc(100% - 20px);
+    float: left;
+    font-weight: bold;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.list {
+    background-color: #eee;
+    border-radius: 3px;
+    padding: 3px;
+    width: 250px;
+    display: inline-block;
+    height: 40px;
+}
+
+#tList ol li .cBox {
+    width: 100%;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 4px 7px;
+    -webkit-box-shadow: 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px #ccc;
+}
+
+
+#tList ol li {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    vertical-align: top;
+    float: left;
+}
+
+#tList ol.cList {
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.placeholder {
+    outline: 1px dashed #4183C4;
+    background-color: #fff;
+}
+
+
+
+/*.drag-placeholder {
+    background-color: #fff;
+    width: 250px;
+    height: 80px;
+    content: "Drop";
+    color: #444;
+
+    opacity: .3;
+    border: 1px dotted #000;
+}*/
+
+.popInner input {
+    border: none;
+    padding: 0 10px;
+    width: auto;
+    display: inline-block;
+}
+
+.popInner {
+    background-color: #ccc;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    margin: auto;
+    width: 650px;
+    border-radius: 3px;
+    z-index: 99;
+}
+
+.pop {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 100%;
+    display: inline-block;
+    z-index: 88;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.sortbx {
+    background: lightsteelblue;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.cList .input-group input {
+    height: 30px;
+}
+
+#tList .sortbx input {
+    margin-bottom: 2px;
+    padding: 2px;
+}
+
+#tList .sortbx ul li p {
+    margin-bottom: 0;
+}
+
+#tList .sortbx>ul>li {
+    list-style: none;
+    display: block;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 1px;
+    background-color: #fff;
+}
+
+#tList .sortbx ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 70px;
+    overflow-y: scroll;
+}
+
+span.userName:first-of-type:before {
+    content: "";
+}
+
+span.userName:before {
+    content: ",";
+}
+
+span.userLabel {
+    margin-right: 3px;
+    width: 30px;
+    height: 10px;
+    display: inline-block;
+}
+
+.input-group {
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 8px);
+    left: 3px;
+    right: 0;
+}
+
+.cBox>p {
+    margin: 5px 0;
+}
+</style>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <div class="container">
+            <h1>Task List</h1>
+            <br>
+            <div class="scrolbx">
+                <ol id="tList">
+                    <li ng-repeat="x in data">
+                        <div class="list">
+                            <input type="text" ng-model="x.name" class="form-control">
+                            <span>‡‡</span>
+                        </div>
+                        <ol class="cList">
+                            <li ng-repeat="y in x.cards" class="sort">
+                                <div class="cBox">
+                                    <span><b>{{y.name}}</b><button class="btn btn-xs pull-right btn-success" ng-click="y.pop = true;copyA(y)">detail</button></span>
+                                    <p ng-show="y.users">Member: <span class="userName" ng-repeat="m in y.users | filter : true">{{m.name}}</span></p>
+                                    <p ng-show="y.label">Lable: <span class="userLabel" style="background-color: {{m.name}};" ng-repeat="m in y.label | filter : true"></span></p>
+                                    <p ng-show="y.date">Date: {{y.date}}</p>
+                                </div>
+                                <div ng-if="y.pop == true" class="pop" ng-click="y.pop = false">
+                                </div>
+                                <div class="popInner" ng-if="y.pop == true">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" ng-model="$parent.y.name" class="form-control">
+                                            <span>&nbsp;&nbsp;&nbsp;in the list of {{$parent.x.name}}</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea ng-model="y.desc" style="resize: none;" class="form-control" placeholder="Add Description" cols="30" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="sortbx">
+                                                <label>Select Member
+                                                    <input type="text" ng-model="userFilter" placeholder="search member" style="width: 100%;">
+                                                </label>
+                                                <ul>
+                                                    <li ng-repeat="u in y.users | filter : userFilter">
+                                                        <label>
+                                                            <input type="checkbox" ng-checked="u.sel" ng-model="u.sel"> <span style="display: inline-block;margin-left: 10px;">{{u.name}}</span></label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="sortbx">
+                                                <label>Select label
+                                                </label>
+                                                <ul>
+                                                    <li ng-repeat="x in y.label">
+                                                        <label>
+                                                            <input type="checkbox" ng-checked="x.sel" ng-model="x.sel"> &nbsp; <span style="padding: 5px 40px;background-color: {{x.name}};display: inline-block;"></span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Date</label>
+                                            <input type="date" name="date" ng-model="y.edate" ng-change="cDate(y,y.edate)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                        <div class="input-group" style="margin: 5px 2px;">
+                            <input type="text" class="form-control" ng-model="x.newCard" placeholder="Add Card" style="height: 30px;">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-xs btn-primary" type="button" ng-click="addC(x)" style="height: 30px;">Add</button>
+                              </span>
+                        </div>
+                    </li>
+                    <div class="addList">
+                        <input ng-class="{ active: showAddTask == true}" type="text" ng-click="showAddTask = true" class="form-control" ng-model="newTask" placeholder="Add Task...">
+                        <div class="addTask" ng-show="showAddTask == true">
+                            <button class="btn-xs btn btn-success" ng-click="addT();">Save</button>
+                            <button class="btn btn-xs btn-danger" ng-click="showAddTask = false;newTask =''">Cancel</button>
+                        </div>
+                    </div>
+                </ol>
+            </div>
+        </div>
+       
+    </div>
+    <script type="text/javascript" id="dddd">
+    </script>
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.data = [];
+        $scope.newTask = "";
+        ///////////////////////////////////////recors of the movement
+        $(document).ready(function() {
+            $('#tList').nestedSortable({
+                forcePlaceholderSize: true,
+                handle: 'div',
+                helper: 'clone',
+                items: 'li',
+                opacity: .5,
+                placeholder: 'placeholder',
+                //revert: 250,
+                tabSize: 10,
+                tolerance: 'pointer',
+                toleranceElement: '> div',
+                maxLevels: 2,
+                protectRoot: true,
+                isTree: false,
+                doNotClear: true,
+                expandOnHover: 100,
+                startCollapsed: false,
+            });
+
+        });
+        $scope.calcc = function() {
+            $scope.u = $('.sortable').nestedSortable('toArray');
+        }
+        ///////////////////////////////////////adding new task
+        $scope.addT = function() {
+            var task = {
+                "name": $scope.newTask
+            }
+            $scope.data.push(task);
+            $scope.newTask = "";
+            $scope.showAddTask = false;
+        }
+        ///////////////////////////////////////adding new card
+        $scope.addC = function(cur) {
+            if (cur.newCard) {
+                var card = {
+                    "name": cur.newCard
+                }
+                if (!cur.cards) {
+                    cur.cards = [];
+                }
+                cur.cards.push(card);
+                cur.newCard = "";
+                console.log($scope.data);
+            }
+        }
+        ///////////////////////////////////////adding new lable
+        $scope.cLab = function(cur, label) {
+            cur.label = [];
+            cur.label.push(label);
+            console.log($scope.data);
+            // cur.newCard = "";
+        }
+        ///////////////////////////////////////adding new mem
+        $scope.uMem = function(cur, member) {
+            cur.member = [];
+            cur.member.push(member);
+            console.log($scope.data);
+            // cur.newCard = "";
+        }
+        ///////////////////////////////////////adding new date
+        $scope.cDate = function(cur, date) {
+            cur.date = "";
+            var d = new Date(date);
+            cur.date = d.toDateString();
+            console.log($scope.data);
+            // cur.newCard = "";
+        }
+        $scope.copyA = function(cur) {
+            if (!cur.users && !cur.label) {
+                cur.users = angular.copy($scope.users);
+                cur.label = angular.copy($scope.labels);
+            }
+        }
+        /////////////////////////////////////user list
+        $scope.users = [
+            { 'first': 'J', 'name': 'John' },
+            { 'first': 'R', 'name': 'Rocky' },
+            { 'first': 'K', 'name': 'Kimble' },
+            { 'first': 'Z', 'name': 'zito' },
+            { 'first': 'A', 'name': 'adden' },
+            { 'first': 'C', 'name': 'cdcden' }
+        ];
+
+        $scope.labels = [
+            { 'name': 'red' },
+            { 'name': 'green' },
+            { 'name': 'blue' },
+            { 'name': 'black' }
+        ];
+
+
+
+
+
+
+
+
+    });
+    </script>
+</body>
+
+</html>
