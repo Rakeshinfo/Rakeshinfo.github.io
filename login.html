@@ -4,30 +4,65 @@
    <meta charset="UTF-8">
    <title>login check</title>
  </head>
+  <style>
+  body {
+    
+    
+    background:#333;
+}
+
+.form_bg {
+    background-color:#eee;
+    color:#666;
+    padding:20px;
+    border-radius:10px;
+    position: absolute;
+    border:1px solid #fff;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 280px;
+}
+
+.align-center {
+    
+    text-align:center;
+}
+  
+  </style>
  <body>
-  <form action="action_page.php">
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-  </div>
-
+  
+  
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>  
+    <div class="row">
+        <div class="form_bg">
+            <form>
+                 <h2 class="text-center">Login Page</h2>
+                <br/>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="userid" placeholder="User id">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="pwd" placeholder="Password">
+                
+                    </div>
+                    <br/>
+                   <div class="align-center">
+                <button type="submit" class="btn btn-default" id="login">Login</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+  
+  
+  
+  
+  
+  
  </body>
  </html>
  
