@@ -39,21 +39,11 @@
   <div class="container">
     <div class="row">
         <div class="form_bg">
-            <form>
-                 <h2 class="text-center">Login Page</h2>
-                <br/>
-                <div class="form-group">
-                    <input type="email" class="form-control" id="userid" placeholder="User id">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="pwd" placeholder="Password">
-                
-                    </div>
-                    <br/>
-                   <div class="align-center">
-                <button type="submit" class="btn btn-default" id="login">Login</button>
-                    </div>
-            </form>
+            <form name="login_form" id="login_form" action="" method="POST" onsubmit="handleFunction('action_login', document.getElementById('user_name_id').value, document.getElementById('password_id').value); return false;">
+  <div class="login_line">name<input name="user_name" id="user_name_id" size="16" maxlength="16" value="" type="text"></div>
+    <div class="login_line">password<input name="password" id="password_id" size="16" maxlength="16" type="password"></div>
+    <div class="login_line">&nbsp;<input class="icon icon_accept" value="login" type="submit"></div>
+</form>
         </div>
     </div>
 </div>
@@ -61,11 +51,7 @@
   
   
   
-  <form name="login_form" id="login_form" action="" method="POST" onsubmit="handleFunction('action_login', document.getElementById('user_name_id').value, document.getElementById('password_id').value); return false;">
-  <div class="login_line">name<input name="user_name" id="user_name_id" size="16" maxlength="16" value="" type="text"></div>
-    <div class="login_line">password<input name="password" id="password_id" size="16" maxlength="16" type="password"></div>
-    <div class="login_line">&nbsp;<input class="icon icon_accept" value="login" type="submit"></div>
-</form>
+  
   
   
   
