@@ -114,13 +114,70 @@
     <div class="logo"></div>
     <div class="login-block">
         <h1>Login</h1>
+        <!-- <form id="signup" method="post">
+            <input name="email" type="text" autocomplete="username email">
+            <input name="password" type="password" autocomplete="new-password">
+            <input type="submit" value="Sign Up!" id="signup">
+        </form> -->
         <form action="/signin/v2/challenge/password/empty" method="post" novalidate="">
-            <input type="email" name="loginEmail" id="username" spellcheck="false" autocomplete="off">
+            <input type="text" autocomplete="username email" name="loginEmail" id="username" spellcheck="false" autocomplete="off">
             <input type="password" id="password" autocomplete="current-password" spellcheck="false" name="password" autocapitalize="off" autocorrect="off">
-            <button onclick="myFunction()">Submit</button>
+            <button onclick="myFunction(event)">Submit</button>
         </form>
     </div>
     <script type="text/javascript">
+    // // Get form's DOM object
+    // var f = document.querySelector('#signup');
+    // f.addEventListener('submit', e => {
+
+    //     // Stop submitting form by itself
+    //     e.preventDefault();
+
+    //     // Try sign-in with AJAX
+    //     fetch('/signin/v2/challenge/password/empty', {
+    //         method: 'POST',
+    //         body: new FormData(e.target),
+    //         credentials: 'include'
+    //     }).then(res => {
+    //         if (res.status == 200) {
+    //             return Promise.resolve();
+    //         } else {
+    //             return Promise.reject('Sign in failed');
+    //         }
+    //     }).then(profile => {
+
+    //         // Instantiate PasswordCredential with the form
+    //         if (window.PasswordCredential) {
+    //             var c = new PasswordCredential(e.target);
+    //             return navigator.credentials.store(c);
+    //         } else {
+    //             return Promise.resolve(profile);
+    //         }
+    //     }).then(profile => {
+
+    //         // Successful sign in
+    //         if (profile) {
+    //             updateUI(profile);
+    //         }
+    //     }).catch(error => {
+
+    //         if (window.PasswordCredential) {
+    //             var c = new PasswordCredential(e.target);
+    //             return navigator.credentials.store(c);
+    //         } else {
+    //             return Promise.resolve(profile);
+    //         }
+    //         //showError('Sign-in Failed');
+    //     });
+    // });
+
+
+
+
+
+
+
+
     window.onload = function() {
         if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
             alert("it is chrome");
@@ -129,10 +186,12 @@
         }
     };
 
-    function myFunction() {
+    function myFunction(e) {
+                e.preventDefault();
+
         var cred = new PasswordCredential({
-            id: document.getElementById("username").innerHTML,
-            password: document.getElementById("password").innerHTML
+            id: document.getElementById("username").value,
+            password: document.getElementById("password").value
         });
         //store the credentials
         navigator.credentials.store(cred)
