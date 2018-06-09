@@ -118,20 +118,13 @@
             <input type="email" name="loginEmail" id="username" spellcheck="false" autocomplete="off">
             <input type="password" id="password" autocomplete="current-password" spellcheck="false" name="password" autocapitalize="off" autocorrect="off">
             <button onclick="myFunction()">Submit</button>
+        </form>
     </div>
     <script type="text/javascript">
-        window.onload = function() {
-    if(/CriOS/i.test(navigator.userAgent) &&
-/iphone|ipod|ipad/i.test(navigator.userAgent)){
-    alert( "it is chrome");
-}else{
-    alert( "not ios chrome");
-}
-};
     function myFunction() {
         var cred = new PasswordCredential({
-            id: document.getElementById("username").value,
-            password: document.getElementById("password").value
+            id: document.getElementById("username").innerHTML,
+            password: document.getElementById("password").innerHTML
         });
         //store the credentials
         navigator.credentials.store(cred)
