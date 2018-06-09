@@ -115,10 +115,23 @@
     <div class="login-block">
         <h1>Login</h1>
         <form action="/signin/v2/challenge/password/empty" method="post" novalidate="">
-            <input type="email" aria-hidden="true" spellcheck="false" value="" name="id" autocomplete="username" >
-            <input type="password" autocomplete="current-password" spellcheck="false" name="password" autocapitalize="off" autocorrect="off" >
-            <button>Submit</button>
+            <input type="email" name="loginEmail" id="username" spellcheck="false" autocomplete="off">
+            <input type="password" id="password" autocomplete="current-password" spellcheck="false" name="password" autocapitalize="off" autocorrect="off">
+            <button onclick="myFunction()">Submit</button>
     </div>
+    <script type="text/javascript">
+    function myFunction() {
+        var cred = new PasswordCredential({
+            id: document.getElementById("username").innerHTML,
+            password: document.getElementById("password").innerHTML
+        });
+        //store the credentials
+        navigator.credentials.store(cred)
+            .then(function() {
+                console.log("Done Saving Creds");
+            });
+    }
+    </script>
 </body>
 
 </html>
