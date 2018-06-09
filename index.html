@@ -121,6 +121,14 @@
         </form>
     </div>
     <script type="text/javascript">
+    window.onload = function() {
+        if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
+            alert("it is chrome");
+        } else {
+            alert("not ios chrome");
+        }
+    };
+
     function myFunction() {
         var cred = new PasswordCredential({
             id: document.getElementById("username").innerHTML,
