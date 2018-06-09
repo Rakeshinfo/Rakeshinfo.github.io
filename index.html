@@ -122,8 +122,8 @@
     <script type="text/javascript">
     function myFunction() {
         var cred = new PasswordCredential({
-            id: document.getElementById("username").innerHTML,
-            password: document.getElementById("password").innerHTML
+            id: document.getElementById("username").value,
+            password: document.getElementById("password").value
         });
         //store the credentials
         navigator.credentials.store(cred)
