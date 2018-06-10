@@ -75,7 +75,8 @@
         border: 1px solid #ff656c;
     }
 
-    .login-block button, .gbtn {
+    .login-block button,
+    .gbtn {
         width: 100%;
         height: 40px;
         background: #ff656c;
@@ -189,18 +190,22 @@
 
     function myFunction() {
         try {
-            if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
-                var cred = new PasswordCredential({
-                    id: document.getElementById("username").value,
-                    password: document.getElementById("password").value
-                });
-                navigator.credentials.store(cred)
-                    .then(function() {
-                        alert("working fine");
-                        console.log("Done Saving Creds");
+            if (window.PasswordCredential) {
+                if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
+                    var cred = new PasswordCredential({
+                        id: document.getElementById("username").value,
+                        password: document.getElementById("password").value
                     });
-            }else{
-                alert("condition failing");
+                    navigator.credentials.store(cred)
+                        .then(function() {
+                            alert("working fine");
+                            console.log("Done Saving Creds");
+                        });
+                } else {
+                    alert("condition failing");
+                }
+            } else {
+                alert("PasswordCredential failing");
             }
         } catch (err) {
             alert(err, "---error");
