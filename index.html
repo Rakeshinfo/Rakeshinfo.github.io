@@ -122,9 +122,10 @@
         <form action="/signin/v2/challenge/password/empty" method="post" novalidate="">
             <input type="text" autocomplete="username email" name="loginEmail" id="username" spellcheck="false" autocomplete="off">
             <input type="password" id="password" autocomplete="current-password" spellcheck="false" name="password" autocapitalize="off" autocorrect="off">
-            <button onclick="myFunction(event)">Submit</button>
+            <button onclick="myFunction()">Submit</button>
         </form>
     </div>
+    <button onclick="myFunction()">Submit2</button>
     <script type="text/javascript">
     // // Get form's DOM object
     // var f = document.querySelector('#signup');
@@ -178,25 +179,30 @@
 
 
 
-    window.onload = function() {
-        if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
-            alert("it is chrome");
-        } else {
-            alert("not ios chrome");
-        }
-    };
+    // window.onload = function() {
+    //     if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
+    //         alert("it is chrome");
+    //     } else {
+    //         alert("not ios chrome");
+    //     }
+    // };
 
-    function myFunction(e) {
-        var cred = new PasswordCredential({
-            id: document.getElementById("username").value,
-            password: document.getElementById("password").value
-        });
-        //store the credentials
-        navigator.credentials.store(cred)
-            .then(function() {
-                alert("working fine");
-                console.log("Done Saving Creds");
-            });
+    function myFunction() {
+        try {
+            if (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) {
+                var cred = new PasswordCredential({
+                    id: document.getElementById("username").value,
+                    password: document.getElementById("password").value
+                });
+                navigator.credentials.store(cred)
+                    .then(function() {
+                        alert("working fine");
+                        console.log("Done Saving Creds");
+                    });
+            }
+        } catch (err) {
+            alert(err, "---error");
+        }
     }
     </script>
 </body>
