@@ -75,7 +75,7 @@
         border: 1px solid #ff656c;
     }
 
-    .login-block button {
+    .login-block button, .gbtn {
         width: 100%;
         height: 40px;
         background: #ff656c;
@@ -125,7 +125,7 @@
             <button onclick="myFunction()">Submit</button>
         </form>
     </div>
-    <button onclick="myFunction()">Submit2</button>
+    <button onclick="myFunction()" class="gbtn">Submit2</button>
     <script type="text/javascript">
     // // Get form's DOM object
     // var f = document.querySelector('#signup');
@@ -199,6 +199,8 @@
                         alert("working fine");
                         console.log("Done Saving Creds");
                     });
+            }else{
+                alert("condition failing");
             }
         } catch (err) {
             alert(err, "---error");
