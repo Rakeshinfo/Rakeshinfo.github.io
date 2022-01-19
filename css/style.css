@@ -584,7 +584,7 @@
 		border: 1px solid #f7c7c9;
 	}
 	/* Google map */
-		#map {
+	.map {
 		height: 300px;
 		margin-bottom:25px;
 		width: 100%;
