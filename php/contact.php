@@ -33,7 +33,7 @@
 		
 		if ($sent) {
 				// If the message is sent successfully print
-				echo "SENT"; 
+				echo "SEND"; 
 			} else {
 				// Display Error Message
 				echo MSG_SEND_ERROR; 
