@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Schema Fallback</title>
 </head>
+<style>
+    html,
+    body {
+        height: 100%;
+        overflow: auto;
+    }
+
+    body {
+        margin: 0
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        border: 0
+    }
+</style>
+
 <body>
-    <p>I am test page</p>
+    <iframe src="https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036">
+    </iframe>
     <script>
-        // Function to check if the app schema URL is working
-        function checkAppSchema(url, fallbackUrl) {
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-
-            iframe.onload = function() {
-                // If the iframe loads, it means the URL is working
-                console.log('App schema URL is working.');
-                document.body.removeChild(iframe);
-            };
-
-            iframe.onerror = function() {
-                // If an error occurs, fallback to the App Store URL
-                console.log('App schema URL is not working. Redirecting to App Store.');
-                window.location.href = fallbackUrl;
-                document.body.removeChild(iframe);
-            };
-
-            // Attempt to load the app schema URL
-            iframe.src = url;
-
-            // Set a timeout to handle cases where the onload/onerror may not trigger
-            setTimeout(() => {
-                if (iframe.parentNode) {
-                    console.log('App schema URL is not working. Redirecting to App Store.');
-                    window.location.href = url;
-                    document.body.removeChild(iframe);
-                }
-            }, 2000); // Adjust timeout as needed
-        }
-
-        // Example usage
         const appSchemaUrl = 'northernrail://com.trainline.development.nr/deeplink/order';
-        const appStoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
+        // const appStoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
+        setTimeout(() => {
+            if (iframe.parentNode) {
+                console.log('App schema URL is not working. Redirecting to App Store.');
+                window.location.href = appSchemaUrl;
+            }
+        }, 2000);
+
         checkAppSchema(appSchemaUrl, appStoreUrl);
     </script>
 </body>
+
 </html>
