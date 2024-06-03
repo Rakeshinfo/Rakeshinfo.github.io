@@ -11,12 +11,18 @@
     <script>
         const appSchemaUrl = 'northernrail://com.trainline.development.nr/deeplink/order';
         const appStoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
-        (setTimeout(() => {
-            window.location.href = appSchemaUrl;
-        }, 2000))();
-        (setTimeout(() => {
-            window.location.href = appStoreUrl;
-        }, 3000))();
+        function tt() {
+            setTimeout(() => {
+                window.location.href = appSchemaUrl;
+            }, 2000);
+
+
+            setTimeout(() => {
+                window.location.href = appStoreUrl;
+            }, 3000);
+        }
+        
+        tt();
     </script>
 </body>
 
