@@ -7,8 +7,6 @@
 </head>
 <body>
     <p>I am test page</p>
-    <iframe src="https://wa.me/?text=I'm%20inquiring%20about%20the%20apartment%20listing" height="200" width="300" title="Iframe Example"></iframe>
-
     <script>
         // Function to check if the app schema URL is working
         function checkAppSchema(url, fallbackUrl) {
@@ -36,7 +34,7 @@
             setTimeout(() => {
                 if (iframe.parentNode) {
                     console.log('App schema URL is not working. Redirecting to App Store.');
-                    window.location.href = fallbackUrl;
+                    window.location.href = url;
                     document.body.removeChild(iframe);
                 }
             }, 2000); // Adjust timeout as needed
