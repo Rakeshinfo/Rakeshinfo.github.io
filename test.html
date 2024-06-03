@@ -6,6 +6,7 @@
     <title>App Schema Fallback</title>
 </head>
 <body>
+    <p>I am test page</p>
     <script>
         // Function to check if the app schema URL is working
         function checkAppSchema(url, fallbackUrl) {
@@ -40,8 +41,8 @@
         }
 
         // Example usage
-        const appSchemaUrl = 'northernrail://';
-        const appStoreUrl = 'https://apps.apple.com/your-app-store-url';
+        const appSchemaUrl = 'northernrail://com.trainline.development.nr/deeplink/order';
+        const appStoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
         checkAppSchema(appSchemaUrl, appStoreUrl);
     </script>
 </body>
