@@ -6,39 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Schema Fallback</title>
 </head>
-<style>
-    html,
-    body {
-        height: 100%;
-        overflow: auto;
-    }
-
-    body {
-        margin: 0
-    }
-
-    iframe {
-        display: block;
-        width: 100%;
-        height: 100vh;
-        border: 0
-    }
-</style>
 
 <body>
-    <iframe src="https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036">
-    </iframe>
     <script>
         const appSchemaUrl = 'northernrail://com.trainline.development.nr/deeplink/order';
-        // const appStoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
-        setTimeout(() => {
-            if (iframe.parentNode) {
-                console.log('App schema URL is not working. Redirecting to App Store.');
-                window.location.href = appSchemaUrl;
-            }
-        }, 2000);
-
-        checkAppSchema(appSchemaUrl, appStoreUrl);
+        const appStoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
+        (setTimeout(() => {
+            window.location.href = appSchemaUrl;
+        }, 2000))();
+        (setTimeout(() => {
+            window.location.href = appStoreUrl;
+        }, 3000))();
     </script>
 </body>
 
