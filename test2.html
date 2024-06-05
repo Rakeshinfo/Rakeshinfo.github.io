@@ -9,8 +9,12 @@
 
 <body>
     <script>
-        const appSchemaUrl = 'northernrail://com.trainline.development.nr/deeplink/order';
+        const isAndroid = /android/i.test(navigator.userAgent);
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+        const appSchemaUrl = isIOS ? 'northernrail://com.trainline.development.nr/deeplink/order' : isAndroid ? 'northernrail://org.northernrail/deeplink/order' : '';
         const appStoreUrl = 'https://www.northernrailway.co.uk/app';
+
         (function tt() {
             setTimeout(() => {
                 window.location.href = appSchemaUrl;
