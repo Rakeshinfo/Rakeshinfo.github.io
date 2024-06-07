@@ -29,13 +29,15 @@
             setTimeout(() => {
                 window.location.href = isIOS ? appstoreUrl : playstoreUrl;
             }, 1000);
+            setTimeout(() => {
+                let iframeSchema = document.createElement("iframe");
+                iframeSchema.style.border = "none";
+                iframeSchema.style.width = "1px";
+                iframeSchema.style.height = "1px";
+                iframeSchema.src = appSchemaUrl;
+                document.body.appendChild(iframeSchema);
+            }, 500);
 
-            var iframe = document.createElement("iframe");
-                iframe.style.border = "none";
-                iframe.style.width = "1px";
-                iframe.style.height = "1px";
-                iframe.src = appSchemaUrl;
-                document.body.appendChild(iframe);
         })();
     </script>
 </body>
