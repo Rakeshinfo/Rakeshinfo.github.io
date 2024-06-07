@@ -12,20 +12,30 @@
         const isAndroid = /android/i.test(navigator.userAgent);
         const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
-        const appSchemaUrl = isIOS ? 'northernrail://com.trainline.development.nr/deeplink/order' : isAndroid ? 'northernrail://org.northernrail/deeplink/order' : 'https://www.northernrailway.co.uk/app';
-        const appStoreUrl = 'https://www.northernrailway.co.uk/app';
+        const appSchemaUrl = isIOS ? 'northernrail://com.trainline.development.nr/deeplink/order' : 'northernrail://org.northernrail/deeplink/order';
+        const marketingUrl = 'https://www.northernrailway.co.uk/app';
+        const playstoreUrl = 'https://play.google.com/store/apps/details?id=org.northernrail.android&hl=en_IN&pli=1';
+        const appstoreUrl = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
 
         (function tt() {
-            setTimeout(() => {
-                window.open(appSchemaUrl, '_system')
-                window.open(appStoreUrl, '_system')
-
-                // window.location.href = appSchemaUrl || appStoreUrl;
-            }, 500);
+            // setTimeout(() => {
+            //     window.location.href = appSchemaUrl;
+            // }, 500);
 
             // setTimeout(() => {
-            //     window.location.href = appStoreUrl;
+            //     window.location.href = marketingUrl;
             // }, 1000);
+
+            setTimeout(() => {
+                window.location.href = isIOS ? appstoreUrl : playstoreUrl;
+            }, 1000);
+
+            var iframe = document.createElement("iframe");
+                iframe.style.border = "none";
+                iframe.style.width = "1px";
+                iframe.style.height = "1px";
+                iframe.src = appSchemaUrl;
+                document.body.appendChild(iframe);
         })();
     </script>
 </body>
