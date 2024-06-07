@@ -12,17 +12,20 @@
         const isAndroid = /android/i.test(navigator.userAgent);
         const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
-        const appSchemaUrl = isIOS ? 'northernrail://com.trainline.development.nr/deeplink/order' : isAndroid ? 'northernrail://org.northernrail/deeplink/order' : '';
+        const appSchemaUrl = isIOS ? 'northernrail://com.trainline.development.nr/deeplink/order' : isAndroid ? 'northernrail://org.northernrail/deeplink/order' : 'https://www.northernrailway.co.uk/app';
         const appStoreUrl = 'https://www.northernrailway.co.uk/app';
 
         (function tt() {
             setTimeout(() => {
-                window.location.href = appSchemaUrl || appStoreUrl;
+                window.open(appSchemaUrl, '_system')
+                window.open(appStoreUrl, '_system')
+
+                // window.location.href = appSchemaUrl || appStoreUrl;
             }, 500);
 
-            setTimeout(() => {
-                window.location.href = appStoreUrl;
-            }, 1000);
+            // setTimeout(() => {
+            //     window.location.href = appStoreUrl;
+            // }, 1000);
         })();
     </script>
 </body>
