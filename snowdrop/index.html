@@ -1,0 +1,268 @@
+<html>
+<link rel="stylesheet" type="text/css" href="./css/snw-maps-widget.min.css">
+<script type="text/javascript" src="./js/snw-maps-widget.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">
+    let config = {
+        gmapLoadConfig: {
+            CLIENT: "gme-snowdropsolutions1",
+            KEY_TIMEZONE: "AIzaSyD061W2dt2dCVGeMTyPbTD_R9AtIhG4WxM"
+        },
+        language: "en",
+        imagesPath: "./images/",
+        limitBounds: true,
+        viewCenter: [
+            52.593629,
+            -2.076747
+        ],
+        viewZoom: 6,
+        viewBounds: {
+            neLat: 58.820058,
+            neLng: 1.961835,
+            swLat: 49.973202,
+            swLng: -8.123613
+        },
+        location: {
+            icon: "icons1x/icon-from.png",
+            width: false,
+            height: false,
+            zoom: 17
+        },
+        customStyle: {
+            primaryColor: "#272360",
+            secondaryColor: "#ffffff",
+            tertiaryColor: "#1AA9A4"
+        },
+        companiesStyle: {
+            SE: {
+                "background-color": "#1E1E50 ",
+                color: "#fff "
+            },
+            VT: {
+                "background-color": "#CC0000 ",
+                color: "#fff"
+            },
+            GR: {
+                "background-color": "#CC0000 ",
+                color: "#fff"
+            },
+            SN: {
+                "background-color": "#003F2E ",
+                color: "#fff"
+            },
+            GN: {
+                "background-color": "#50107D",
+                color: "#fff"
+            },
+            TL: {
+                "background-color": "#50107D",
+                color: "#fff"
+            },
+            EM: {
+                "background-color": "#0062AD",
+                color: "#fff"
+            }
+        },
+        delayStyle: {
+            ontime: {
+                color: "#30B458"
+            },
+            minorDelay: {
+                time: 10,
+                color: "#DA2728"
+            },
+            moderateDelay: {
+                time: 29,
+                color: "#DA2728"
+            },
+            severeDelay: {
+                color: "#DA2728"
+            },
+            cancelled: {
+                color: "#DA2728"
+            }
+        },
+        disruptionStyle: {
+            normalDisruption: {
+                color: "#FFC200"
+            },
+            minorDisruption: {
+                color: "#FFA500"
+            },
+            majorDisruption: {
+                color: "#FF0000"
+            },
+            severeDisruption: {
+                color: "#000000"
+            }
+        },
+        mapIcons: {
+            iconsPath: "icons1x",
+            trainIcon: {
+                url: "icon-train-big.png",
+                anchor: [
+                    30,
+                    30
+                ]
+            },
+            stationIcon: "icon-station.png",
+            selectedStationIcon: "icon-station-selected.png",
+            stationIconAnchor: [
+                11,
+                11
+            ]
+        },
+        stationsMinZoom: 12,
+        selectedStationZoom: 17,
+        nearbyTime: 60,
+        autocomplete: {
+            zoomTarget: 13,
+            stationsAutocomplete: {
+                minKeystroke: 1,
+                maxResults: 5
+            },
+            googlePlacesAutocomplete: {
+                minKeystroke: 4,
+                maxResults: 5
+            }
+        },
+        fromIconMarker: {
+            icon: "icon-start.png"
+        },
+        toIconMarker: {
+            icon: "icon-selected.png"
+        },
+        journeyPlanner: {
+            maxResults: 5
+        },
+        userActionTracking: {
+            componentConstructorClass: "UserActionTracking"
+        },
+        TwitterAccounts: [
+            "NationalRailenq",
+            "NetworkRail",
+            "VirginTrains",
+            "SW_Trains",
+            "virgin_trainsec",
+            "arrivatw",
+            "c2c_rail",
+            "calsleeper",
+            "chilternrailway",
+            "crosscountryuk",
+            "emtrains",
+            "eurostaruk",
+            "gatwickexpress",
+            "gc_rail",
+            "gnrailuk",
+            "gwrhelp",
+            "greateranglia",
+            "heathrowexpress",
+            "hull_trains",
+            "londonmidland",
+            "ldnoverground",
+            "tfltravelalerts",
+            "merseyrail",
+            "northernassist",
+            "scotrail",
+            "se_railway",
+            "southernrailuk",
+            "stansted_exp",
+            "tflrail",
+            "tlrailuk",
+            "tpexpresstrains",
+            "virgintrainsec"
+        ],
+        predictionDelays: {
+            timeWindow: 1,
+            colorsPrediction: [
+                {
+                    minTime: 0,
+                    maxTime: 10,
+                    color: "#52B952"
+                },
+                {
+                    minTime: 30,
+                    color: "#E08831",
+                    frequencyMin: 0.25,
+                    frequencyMax: 0.5
+                },
+                {
+                    minTime: 10,
+                    maxTime: 30,
+                    color: "#E08831",
+                    frequencyMin: 0.5,
+                    frequencyMax: 1
+                },
+                {
+                    minTime: 30,
+                    color: "#E03159",
+                    frequencyMin: 0.5
+                },
+                {
+                    minTime: "cancelled",
+                    color: "#E03159",
+                    frequencyMin: 1
+                }
+            ]
+        },
+        routeStyles: [],
+        alternativesRoutesDelayed: 30,
+        mainStations: [
+            "YRK",
+            "PBO",
+            "NCL",
+            "EDB",
+            "LDS",
+            "KGX"
+        ],
+        baseApiUrl: "https://trainline-api-dot-trainline-ajp-prod.appspot.com"
+    }
+    let apiObject = {
+        userAction: function (data) {
+        }
+    }
+    let locationSuccessCallback
+    let LocationInterface = {
+        getLocation: function (success) {
+            locationSuccessCallback = success
+            if (window.nativePostMessage)
+                window.nativePostMessage('GET_LOCATION')
+            else {
+                window.postMessage('GET_LOCATION', "*")
+            }
+        }
+    }
+
+
+    $(document).ready(function () {
+        window.snwMapsWidget.default.createVisualization('map-container-large', config,
+            apiObject).done(
+                function (widget) {
+                    snwWidget = widget;
+                });
+
+
+    });
+
+    document.addEventListener("message", function (event) {
+        var data = JSON.parse(event.data)
+        locationSuccessCallback({
+            lat: data.coords.latitude,
+            lng: data.coords.longitude
+        })
+    });
+
+
+</script>
+
+<head>
+    <title>
+        Multimodal
+    </title>
+</head>
+
+<body style="margin: 0px">
+    <div id="map-container-large"></div>
+</body>
+
+</html>
