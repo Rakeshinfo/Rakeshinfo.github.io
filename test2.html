@@ -22,10 +22,11 @@
             }, 500);
 
             setTimeout(() => {
+                if (!document.hidden) { 
                 window.location.href = marketingUrl;
+                }
             }, 1000);
-
-        })();
+  }, 800); 
     </script>
 </body>
 
