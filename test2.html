@@ -9,22 +9,50 @@
 
 <body>
     <script>
-        const isAndroid = /android/i.test(navigator.userAgent);
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+function openAppOrRedirect() {
+  // Detect Device and Platform
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const isIOS = /iPhone|iPad|iPod/.test(userAgent) && !window.MSStream; 
+  const isAndroid = /android/i.test(userAgent);
 
-        const appSchemaUrl = isIOS ? 'northernrail://com.trainline.development.nr/deeplink/order' : 'northernrail://org.northernrail/deeplink/order';
-        const marketingUrl = 'https://www.northernrailway.co.uk/app';
-        const storeUrl = isIOS ? 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036': 'https://play.google.com/store/apps/details?id=org.northernrail.android&hl=en_IN&pli=1';
+  // Define URLs
+  const appSchemaUrl = {
+    ios: "northernrail://com.trainline.development.nr/deeplink/order",
+    android: "northernrail://org.northernrail/deeplink/order",
+  };
+  const marketingUrl = "https://www.northernrailway.co.uk/app";
+  const storeUrl = {
+    ios: "https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036",
+    android: "https://play.google.com/store/apps/details?id=org.northernrail.android&hl=en_IN&pli=1",
+  };
 
-        (function tt() {
-            setTimeout(() => {
-                window.location.href = appSchemaUrl;
-            }, 500);
+  // Attempt to Open App
+  window.location.href = isIOS ? appSchemaUrl.ios : appSchemaUrl.android;
 
-            setTimeout(() => {
-                window.location.href = marketingUrl;
-            }, 1000);
-  }, 800); 
+  // Fallback to Marketing Site (if app not installed)
+  const fallbackToMarketing = setTimeout(() => {
+    window.location.href = marketingUrl;
+  }, 500); // Adjust timeout as needed
+
+  // Fallback to App Store (if marketing site not desired)
+  const fallbackToStore = setTimeout(() => {
+    clearTimeout(fallbackToMarketing); // Cancel marketing redirect
+    window.location.href = isIOS ? storeUrl.ios : storeUrl.android;
+  }, 1000); // Adjust timeout as needed
+
+  // Detect if App Opened (Optional)
+  // You could use a more sophisticated method to detect if the app truly opened
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      clearTimeout(fallbackToMarketing);
+      clearTimeout(fallbackToStore);
+    }
+  });
+}
+
+openAppOrRedirect(); // Call the function immediately
+
+
     </script>
 </body>
 
