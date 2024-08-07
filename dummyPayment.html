@@ -20,9 +20,26 @@
 </head>
 <body>
   <div class="image-container">
-    <a href="test2.html">
+    <a href="yourdomain://path/to/content" onClick={handleLinkClick}>
     <img src="dummyPayment.png" alt="Image description">
     </a>
   </div>
+<script>
+function openAppOrStore() {
+  const appLink = "northernrail://com.trainline.development.nr/deeplink/order";
+  const storeLink = "https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036"; // iOS
+  const startTime = new Date().getTime();
+
+  window.location = appLink;
+
+  setTimeout(function() {
+    const endTime = new Date().getTime();
+    if (endTime - startTime < 1000) { // If app didn't open within 1 second
+      window.location = storeLink; 
+    }
+  }, 1000);
+}
+
+</script>
 </body>
 </html>
