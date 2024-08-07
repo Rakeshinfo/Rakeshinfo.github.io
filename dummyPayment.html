@@ -20,12 +20,13 @@
 </head>
 <body>
   <div class="image-container">
-    <a href="yourdomain://path/to/content" onClick={handleLinkClick}>
+    <a href="yourdomain://path/to/content" onClick={openAppOrStore}>
     <img src="dummyPayment.png" alt="Image description">
     </a>
   </div>
 <script>
-function openAppOrStore() {
+function openAppOrStore(event) {
+  event.preventDefault();
   const appLink = "northernrail://com.trainline.development.nr/deeplink/order";
   const storeLink = "https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036"; // iOS
   const startTime = new Date().getTime();
