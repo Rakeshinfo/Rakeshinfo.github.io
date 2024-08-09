@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Redirect</title>
+    <script>
+        function redirectToStore() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = 'https://apps.apple.com/gb/app/northern-train-tickets-times/id576380036';
+            } 
+            else if (/android/i.test(userAgent)) {
+                window.location.href = 'https://play.google.com/store/apps/details?id=org.northernrail.android&hl=en_IN&pli=1';
+            } 
+            else {
+                window.location.href = 'https://play.google.com/store/apps/details?id=org.northernrail.android&hl=en_IN&pli=1';
+            }
+        }
+    </script>
+</head>
+<body onload="redirectToStore()">
+    <h1>Redirecting to the appropriate store...</h1>
+    <p>If you are not redirected, <a href="https://www.yourwebsite.com">click here</a>.</p>
+</body>
+</html>
