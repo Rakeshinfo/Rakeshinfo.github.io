@@ -32,21 +32,19 @@ function openAppOrRedirect() {
   // Fallback to Marketing Site (if app not installed)
   const fallbackToMarketing = setTimeout(() => {
     window.location.href = marketingUrl;
-  }, 500); // Adjust timeout as needed
-
-  // Fallback to App Store (if marketing site not desired)
-  const fallbackToStore = setTimeout(() => {
-    clearTimeout(fallbackToMarketing); // Cancel marketing redirect
-    window.location.href = isIOS ? storeUrl.ios : storeUrl.android;
   }, 1000); // Adjust timeout as needed
 
-  // Detect if App Opened (Optional)
-  // You could use a more sophisticated method to detect if the app truly opened
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") {
-      clearTimeout(fallbackToMarketing);
-      clearTimeout(fallbackToStore);
-    }
+  // const fallbackToStore = setTimeout(() => {
+  //   clearTimeout(fallbackToMarketing); // Cancel marketing redirect
+  //   window.location.href = isIOS ? storeUrl.ios : storeUrl.android;
+  // }, 1000); 
+
+  
+  // document.addEventListener("visibilitychange", () => {
+  //   if (document.visibilityState === "hidden") {
+  //     clearTimeout(fallbackToMarketing);
+  //     clearTimeout(fallbackToStore);
+  //   }
   });
 }
 
